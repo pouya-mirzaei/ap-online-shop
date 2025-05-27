@@ -93,22 +93,6 @@ public interface ProductService {
     List<Product> filterByPriceRange(double minPrice, double maxPrice);
 
     /**
-     * Sort products by name
-     * 
-     * @param ascending true for ascending order, false for descending
-     * @return sorted list of products
-     */
-    List<Product> sortByName(boolean ascending);
-
-    /**
-     * Sort products by price
-     * 
-     * @param ascending true for ascending order, false for descending
-     * @return sorted list of products
-     */
-    List<Product> sortByPrice(boolean ascending);
-
-    /**
      * Filter products with multiple criteria
      * 
      * @param category  category to filter by (null for all)

@@ -20,7 +20,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    public ProductController(@Qualifier("defaultProductService") ProductService productService) {
+    public ProductController(@Qualifier("studentProductService") ProductService productService) {
         this.productService = productService;
     }
 
@@ -93,18 +93,6 @@ public class ProductController {
             @RequestParam double minPrice,
             @RequestParam double maxPrice) {
         return ResponseEntity.ok(productService.filterByPriceRange(minPrice, maxPrice));
-    }
-
-    @GetMapping("/sort/name")
-    public ResponseEntity<List<Product>> sortByName(
-            @RequestParam(defaultValue = "true") boolean ascending) {
-        return ResponseEntity.ok(productService.sortByName(ascending));
-    }
-
-    @GetMapping("/sort/price")
-    public ResponseEntity<List<Product>> sortByPrice(
-            @RequestParam(defaultValue = "true") boolean ascending) {
-        return ResponseEntity.ok(productService.sortByPrice(ascending));
     }
 
     @GetMapping("/filter")

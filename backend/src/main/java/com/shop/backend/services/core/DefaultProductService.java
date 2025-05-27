@@ -149,22 +149,6 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
-    public List<Product> sortByName(boolean ascending) {
-        // TODO: Implement this method
-        // Students should create a sorted copy of the products list based on product
-        // names
-        return null;
-    }
-
-    @Override
-    public List<Product> sortByPrice(boolean ascending) {
-        // TODO: Implement this method
-        // Students should create a sorted copy of the products list based on product
-        // prices
-        return null;
-    }
-
-    @Override
     public List<Product> filterProducts(String category, Double minPrice, Double maxPrice, String sortBy) {
         // TODO: Implement this method
         // Students should filter products by category and price range, then sort them

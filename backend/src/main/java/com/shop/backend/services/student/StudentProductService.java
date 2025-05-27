@@ -79,18 +79,6 @@ public class StudentProductService implements ProductService {
     }
 
     @Override
-    public List<Product> sortByName(boolean ascending) {
-        // TODO: Implement this method
-        return null;
-    }
-
-    @Override
-    public List<Product> sortByPrice(boolean ascending) {
-        // TODO: Implement this method
-        return null;
-    }
-
-    @Override
     public List<Product> filterProducts(String category, Double minPrice, Double maxPrice, String sortBy) {
         // TODO: Implement this method
 
