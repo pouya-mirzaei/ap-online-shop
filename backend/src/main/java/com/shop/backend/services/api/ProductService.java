@@ -13,14 +13,14 @@ public interface ProductService {
 
     /**
      * Get all products
-     * 
+     *
      * @return list of all products
      */
     List<Product> getAllProducts();
 
     /**
      * Get product by ID
-     * 
+     *
      * @param id product ID
      * @return product if found
      */
@@ -28,7 +28,7 @@ public interface ProductService {
 
     /**
      * Create a new product
-     * 
+     *
      * @param product product to create
      * @return created product
      */
@@ -36,7 +36,7 @@ public interface ProductService {
 
     /**
      * Update an existing product
-     * 
+     *
      * @param id      product ID
      * @param product updated product data
      * @return updated product
@@ -45,7 +45,7 @@ public interface ProductService {
 
     /**
      * Delete a product
-     * 
+     *
      * @param id product ID
      * @return true if deleted, false otherwise
      */
@@ -53,7 +53,7 @@ public interface ProductService {
 
     /**
      * Get products by category
-     * 
+     *
      * @param category category name
      * @return list of products in the category
      */
@@ -61,7 +61,7 @@ public interface ProductService {
 
     /**
      * Search products by name
-     * 
+     *
      * @param query search query
      * @return list of products matching the query
      */
@@ -69,7 +69,7 @@ public interface ProductService {
 
     /**
      * Update product stock
-     * 
+     *
      * @param id       product ID
      * @param quantity quantity to add (positive) or remove (negative)
      * @return updated product
@@ -78,14 +78,14 @@ public interface ProductService {
 
     /**
      * Get all available categories
-     * 
+     *
      * @return set of all product categories
      */
     Set<String> getAllCategories();
 
     /**
      * Filter products by price range
-     * 
+     *
      * @param minPrice minimum price (inclusive)
      * @param maxPrice maximum price (inclusive)
      * @return list of products within the price range
@@ -93,13 +93,28 @@ public interface ProductService {
     List<Product> filterByPriceRange(double minPrice, double maxPrice);
 
     /**
+     * Sort products by name
+     *
+     * @param ascending true for ascending order, false for descending
+     * @return sorted list of products
+     */
+    List<Product> sortByName(boolean ascending);
+
+    /**
+     * Sort products by price
+     *
+     * @param ascending true for ascending order, false for descending
+     * @return sorted list of products
+     */
+    List<Product> sortByPrice(boolean ascending);
+
+    /**
      * Filter products with multiple criteria
-     * 
+     *
      * @param category  category to filter by (null for all)
      * @param minPrice  minimum price (null for no minimum)
      * @param maxPrice  maximum price (null for no maximum)
      * @param sortBy    field to sort by ("name" or "price")
-     * @param ascending true for ascending order, false for descending
      * @return list of filtered and sorted products
      */
     List<Product> filterProducts(String category, Double minPrice, Double maxPrice, String sortBy);

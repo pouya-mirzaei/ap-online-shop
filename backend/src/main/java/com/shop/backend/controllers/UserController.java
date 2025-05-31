@@ -2,11 +2,15 @@ package com.shop.backend.controllers;
 
 import com.shop.backend.models.User;
 import com.shop.backend.services.api.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +45,16 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
+        try {
+            var newUser = userService.createUser(user);
+
+            // ✅ Call the method here to write the new user into the file
+            saveUserToFile(newUser);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+        } catch (IllegalArgumentException err) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
@@ -98,4 +111,30 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // Method to save user data into database.txt(added by me)
+    private void saveUserToFile(User user) {
+        String fileName = "D:\\programming\\ap-online-shop\\backend\\database.txt";
+
+        try {
+            File file = new File(fileName);
+            boolean isNewFile = file.createNewFile(); // Create file if it doesn't exist
+
+            try (FileWriter writer = new FileWriter(fileName, true)) {
+                // ✅ Write header only if the file was just created
+                if (isNewFile) {
+                    writer.write("USER_ID | USER_NAME | EMAIL | PASSWORD\n");
+                }
+
+                writer.write(user.getId() + "|" + user.getUsername() + "|" + user.getEmail() + "|" + user.getPassword() + "\n");
+                writer.flush(); // Ensure the data is actually written
+                System.out.println("✅ User saved to file: " + user.getUsername());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("❌ Error writing user data to file: " + e.getMessage());
+        }
+    }
+
+
 }
