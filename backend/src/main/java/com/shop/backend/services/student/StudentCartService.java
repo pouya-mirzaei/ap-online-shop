@@ -1,6 +1,7 @@
 package com.shop.backend.services.student;
 
 import com.shop.backend.models.Cart;
+import com.shop.backend.models.Product;
 import com.shop.backend.services.api.CartService;
 import com.shop.backend.services.api.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,49 +29,118 @@ public class StudentCartService implements CartService {
 
     @Override
     public Cart getCartByUserId(String userId) {
-        // TODO: Implement this method
-        return null;
+        return carts.getOrDefault(userId, null);
     }
 
     @Override
     public Cart createCart(String userId) {
-        // TODO: Implement this method
-        return null;
+        if (userId == null || userId.isEmpty()) {
+            throw new IllegalArgumentException("User ID cannot be null or empty.");
+        }
+        Cart newCart = new Cart(userId);
+        carts.put(userId, newCart);
+        return newCart;
     }
+
 
     @Override
     public Cart addToCart(String userId, String productId, int quantity) {
-        // TODO: Implement this method
-        return null;
+        if (userId == null || userId.isEmpty()) {
+            throw new IllegalArgumentException("User ID cannot be null or empty.");
+        }
+        if (productId == null || productId.isEmpty()) {
+            throw new IllegalArgumentException("Product ID cannot be null or empty.");
+        }
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than zero.");
+        }
+
+        Cart target = carts.getOrDefault(userId, new Cart(userId));
+        Product p1 = productService.getProductById(productId);
+        if (p1 == null) {
+            throw new IllegalArgumentException("Product not found: " + productId);
+        }
+
+        target.addItem(p1, quantity);
+        carts.put(userId, target);
+        return target;
     }
+
 
     @Override
     public Cart updateCartItem(String userId, String productId, int quantity) {
-        // TODO: Implement this method
-        return null;
+        if (userId == null || userId.isEmpty()) {
+            throw new IllegalArgumentException("User ID cannot be null or empty.");
+        }
+        if (productId == null || productId.isEmpty()) {
+            throw new IllegalArgumentException("Product ID cannot be null or empty.");
+        }
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity cannot be negative.");
+        }
+
+        Cart target = carts.get(userId);
+
+        if (target == null) {
+            throw new IllegalArgumentException("Cart not found for user: " + userId);
+        }
+        target.updateItemQuantity(productId, quantity);
+        return target;
     }
+
 
     @Override
     public Cart removeFromCart(String userId, String productId) {
-        // TODO: Implement this method
-        return null;
+        if (userId == null || userId.isEmpty()) {
+            throw new IllegalArgumentException("User ID cannot be null or empty.");
+        }
+        if (productId == null || productId.isEmpty()) {
+            throw new IllegalArgumentException("Product ID cannot be null or empty.");
+        }
+
+        Cart target = getCartByUserId(userId);
+
+        if (target == null) {
+            throw new IllegalArgumentException("Cart not found for user: " + userId);
+        }
+
+        target.removeItem(productId);
+        return target;
     }
+
 
     @Override
     public Cart clearCart(String userId) {
-        // TODO: Implement this method
-        return null;
+        if (userId == null || userId.isEmpty()) {
+            throw new IllegalArgumentException("User ID cannot be null or empty.");
+        }
+
+        Cart target = carts.get(userId);
+
+        if (target == null) {
+            throw new IllegalArgumentException("Cart not found for user: " + userId);
+        }
+
+        target.clear();
+        return target;
     }
+
 
     @Override
     public int getCartSize(String userId) {
-        // TODO: Implement this method
-        return 0;
+        Cart target = getCartByUserId(userId);
+        if (target == null) {
+            throw new IllegalArgumentException("Cart not found for user: " + userId);
+        }
+        return target.getItems().size();
     }
 
     @Override
     public double getCartTotal(String userId) {
-        // TODO: Implement this method
-        return 0.0;
+        Cart target = getCartByUserId(userId);
+        if (target == null) {
+            throw new IllegalArgumentException("Cart not found for user: " + userId);
+        }
+        return target.getTotalAmount();
     }
 }

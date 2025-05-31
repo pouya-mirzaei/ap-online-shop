@@ -25,7 +25,7 @@ public class User {
         this.id = UUID.randomUUID().toString();
     }
 
-    public User(String username, String email, String password, String role) {
+    public User(String userId, String username, String email, String password, String role) {
         this.id = UUID.randomUUID().toString();
         this.username = username;
         this.email = email;

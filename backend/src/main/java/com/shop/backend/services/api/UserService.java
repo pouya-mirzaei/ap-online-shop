@@ -31,7 +31,7 @@ public interface UserService {
      * @param user user to create
      * @return created user
      */
-    User createUser(User user);
+    User createUser(User user) throws IllegalArgumentException;
 
     /**
      * Update an existing user

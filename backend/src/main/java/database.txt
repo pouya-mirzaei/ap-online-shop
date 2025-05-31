@@ -1,0 +1,15 @@
+USER_ID|USER_NAME|EMAIL|PASSWORD|ROLE
+0c6804b7-ed59-4d92-9f6d-b1a3001a929d|pouya|pouya@gmail.com|pass123456|ADMIN
+012ba278-6bbc-4ea9-a16e-b78039aa9372|mamad|z@gmail.com|345678|null
+102836af-2703-4efc-b22e-ae3f72f66d74|hassan|z@gmail.com|123456789|CUSTOMER
+f271062b-60de-44ab-9a86-02207f337da5|hassan|z@gmail.com|123456789|CUSTOMER
+245a90b8-70ce-415b-8364-7c827e276015|abcdefgh|123456789|z@gmail.com|CUSTOMER
+1180cc6c-b4cb-45ab-add8-ad951b796cff|ali|3456789|alizare@gmail.com|null
+07925537-5a5e-4814-b298-c8308412b2b8|soheil|123456789|test@gmail.com|CUSTOMER
+b5dcc6ec-2ef7-45e5-9fdc-088034cf2670|soheil|123456789|test@gmail.com|CUSTOMER
+691ea4ae-8230-4c48-9ef6-57f1a6a114a3|ali mamadi|test@gmail.com|3456789|CUSTOMER
+94a23158-9b6b-4231-bd62-ea28611a1b7b|reza|ab@gmail.com|qwertyuiop|CUSTOMER
+94a23158-9b6b-4231-bd62-ea28611a1b7b|reza|ab@gmail.com|qwertyuiop
+
+
+

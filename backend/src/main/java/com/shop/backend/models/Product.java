@@ -28,7 +28,7 @@ public class Product {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Product(String name, double price, String description, int stock, String category) {
+    public  Product(String name, double price, String description, int stock, String category) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.price = price;
